@@ -10,7 +10,11 @@
 // TODO: BUG: clear the style tag at the right time (new loop)
 class Css {
   constructor() {
-    this.styleBlock = document.getElementById('scene-css');
+    this.styleBlock = document.createElement('style');
+  }
+
+  init() {
+    document.head.appendChild(this.styleBlock);
   }
 
   createClass(event) {
@@ -18,12 +22,8 @@ class Css {
     return `.scene ${event.class} {\n${event.data}\n}`;
   }
 
-  addStyle(event, reset) {
-    // console.log('fired you doggy homeskillet');
-
-    // console.table(event);
-
-    if (reset) {
+  addStyle(event, newMeasure) {
+    if (newMeasure) {
       this.styleBlock.innerHTML = '';
     }
 
